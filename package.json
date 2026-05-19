@@ -4,11 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev": "ts-node-dev --respawn -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
-    "migrate:latest": "knex --knexfile knexfile.js --require ts-node/register migrate:latest",
-    "migrate:rollback": "knex --knexfile knexfile.js --require ts-node/register migrate:rollback",
-    "seed:run": "knex --knexfile knexfile.js --require ts-node/register seed:run",
+    "migrate:latest": "node -r ts-node/register ./node_modules/knex/bin/cli.js --knexfile knexfile.js migrate:latest",
+    "migrate:rollback": "node -r ts-node/register ./node_modules/knex/bin/cli.js --knexfile knexfile.js migrate:rollback",
+    "seed:run": "node -r ts-node/register ./node_modules/knex/bin/cli.js --knexfile knexfile.js seed:run",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
     "pretty": "prettier --write \"src/**/*.ts\""
@@ -24,6 +24,7 @@
     "prettier": "^2.5.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^4.5.5"
   },
   "husky": {
