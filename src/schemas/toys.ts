@@ -11,7 +11,3 @@ export const ToyUpdateData = ToyInputData.partial();
 export const ToyIdParam = z.object({
   id: z.coerce.number().int().positive('Id must be a positive integer'),
 });
-
-export type ToyInput = z.infer<typeof ToyInputData>;
-export type ToyUpdate = z.infer<typeof ToyUpdateData>;
-export type ToyId = z.infer<typeof ToyIdParam>;
