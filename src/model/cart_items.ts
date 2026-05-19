@@ -1,13 +1,13 @@
 import db from '#config/database';
 const TABLE = 'cart_items';
-import { CartItemId, CartItemInput, CartItemUpdate } from '#schemas/types';
+import { CartId, CartItemId, CartItemInput, CartItemUpdate } from '#schemas/types';
 
 function baseQuery(trx = db) {
   return trx(TABLE);
 }
 
-export async function listCartItems() {
-  const qb = baseQuery().select('*');
+export async function listCartItems(id: CartId) {
+  const qb = baseQuery().where({ cart_id: id }).select('*');
   return qb;
 }
 
