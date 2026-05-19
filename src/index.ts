@@ -1,5 +1,8 @@
 import express, { Application, Request, Response } from 'express';
 import toysRouter from './routes/toys';
+import accountsRouter from './routes/accounts';
+import authRouter from './routes/auth';
+import cartsRouter from './routes/carts';
 import bodyParser from 'body-parser';
 const app: Application = express();
 const PORT = 3000;
@@ -8,6 +11,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/toys', toysRouter);
+app.use('/accounts', accountsRouter);
+app.use('/auth', authRouter);
+app.use('/carts', cartsRouter);
 
 app.get('/', async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).send({
