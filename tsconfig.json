@@ -5,7 +5,14 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "strict": true,
+    "paths": {
+      "#config/*": ["./src/config/*"],
+      "#controllers/*": ["./src/controllers/*"],
+      "#models/*": ["./src/model/*"],
+      "#schemas/*": ["./src/schemas/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]
