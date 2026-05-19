@@ -24,7 +24,8 @@ export async function findAccountByEmail(email: string) {
 export async function createAccount(accountData: AccountInput) {
   const { name, email, password } = accountData;
   const newAccount = await baseQuery().insert({ name, email, password });
-  return newAccount[0];
+  const newAccountData = await findAccountById(newAccount[0]);
+  return newAccountData;
 }
 
 export async function updateAccount(id: number, accountData: AccountUpdate) {
