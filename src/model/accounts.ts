@@ -23,7 +23,7 @@ export async function findAccountByEmail(email: string) {
 
 export async function createAccount(accountData: AccountInput) {
   const { name, email, password } = accountData;
-  const newAccount = await baseQuery().insert({ name, email, password }).returning('*');
+  const newAccount = await baseQuery().insert({ name, email, password });
   return newAccount[0];
 }
 
@@ -31,15 +31,13 @@ export async function updateAccount(id: number, accountData: AccountUpdate) {
   const { name, email, password } = accountData;
   const updatedAccount = await baseQuery()
     .where({ id })
-    .update({ name, email, password })
-    .returning('*');
-  return updatedAccount[0];
+    .update({ name, email, password });
+  return updatedAccount;
 }
 
 export async function deleteAccount(id: number) {
   const deletedAccount = await baseQuery()
     .where({ id })
-    .delete()
-    .returning('*');
-  return deletedAccount[0];
+    .delete();
+  return deletedAccount;
 }

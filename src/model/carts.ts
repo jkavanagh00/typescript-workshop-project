@@ -23,7 +23,7 @@ export async function findCartByAccountId(id: number) {
 
 export async function createCart(cartData: CartInput) {
   const { account_id, status } = cartData;
-  const newCart = await baseQuery().insert({ account_id, status }).returning('*');
+  const newCart = await baseQuery().insert({ account_id, status });
   return newCart[0];
 }
 
@@ -31,15 +31,13 @@ export async function updateCart(id: number, cartData: CartUpdate) {
   const { account_id, status } = cartData;
   const updatedCart = await baseQuery()
     .where({ id })
-    .update({ account_id, status })
-    .returning('*');
-  return updatedCart[0];
+    .update({ account_id, status });
+  return updatedCart;
 }
 
 export async function deleteCart(id: number) {
   const deletedCart = await baseQuery()
     .where({ id })
-    .delete()
-    .returning('*');
-  return deletedCart[0];
+    .delete();
+  return deletedCart;
 }

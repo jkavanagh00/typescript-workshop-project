@@ -24,8 +24,7 @@ export async function createToy(toyData: ToyInput) {
       name,
       age_range,
       price,
-    })
-    .returning('*');
+    });
 
   return createdToy[0];
 }
@@ -39,17 +38,15 @@ export async function updateToy(id: number, toyData: ToyUpdate) {
       name,
       age_range,
       price,
-    })
-    .returning('*');
+    });
 
-  return updatedToy[0];
+  return updatedToy;
 }
 
 export async function deleteToy(id: number) {
   const deletedToy = await baseQuery()
     .where({ id })
-    .delete()
-    .returning('*');
+    .delete();
 
-  return deletedToy[0];
+  return deletedToy;
 }
