@@ -66,7 +66,7 @@ export async function addItemToCart(req: Request, res: Response) {
 
 export async function removeItemFromCart(req: Request, res: Response) {
     try {
-        const accountId = AccountIdParam.safeParse(req.user?.id);
+        const accountId = AccountIdParam.safeParse({ id:req.user?.id});
         if (!accountId.success) {
             return res.status(400).json({ error: accountId.error.issues });
         }
