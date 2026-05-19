@@ -1,10 +1,13 @@
 import express, { Application, Request, Response } from 'express';
+import toysRouter from './routes/toys';
 import bodyParser from 'body-parser';
 const app: Application = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/toys', toysRouter);
 
 app.get('/', async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).send({
@@ -24,5 +27,5 @@ try {
     console.log(`Connected successfully on port ${PORT}`);
   });
 } catch (error: any) {
-  console.error(`Error occured: ${error.message}`);
+  console.error(`Error occurred: ${error.message}`);
 }
