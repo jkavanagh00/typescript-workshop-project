@@ -12,7 +12,8 @@
       "#controllers/*": ["./src/controllers/*"],
       "#models/*": ["./src/model/*"],
       "#schemas/*": ["./src/schemas/*"]
-    }
+    },
+    "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
