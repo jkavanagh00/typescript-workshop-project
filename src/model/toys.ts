@@ -1,6 +1,6 @@
 import db from '#config/database';
 const TABLE = 'toy';
-import { ToyId, ToyInput, ToyUpdate } from '#schemas/types';
+import { ToyInput, ToyUpdate } from '#schemas/types';
 
 function baseQuery(trx = db) {
   return trx(TABLE);

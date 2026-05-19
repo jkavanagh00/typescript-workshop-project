@@ -1,7 +1,6 @@
 import db from '#config/database';
 const TABLE = 'cart';
-import { CartId, CartInput, CartUpdate } from '#schemas/types';
-import { AccountId } from '#schemas/types';
+import { CartInput, CartUpdate } from '#schemas/types';
 
 function baseQuery(trx = db) {
   return trx(TABLE);

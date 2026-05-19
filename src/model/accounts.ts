@@ -1,6 +1,6 @@
 import db from '#config/database';
 const TABLE = 'account';
-import { AccountId, AccountInput, AccountUpdate } from '#schemas/types';
+import { AccountInput, AccountUpdate } from '#schemas/types';
 
 function baseQuery(trx = db) {
   return trx(TABLE);
