@@ -11,7 +11,7 @@ export async function listAccounts() {
   return qb;
 }
 
-export async function findAccountById(id: AccountId) {
+export async function findAccountById(id: number) {
   const qb = baseQuery().where({ id }).first();
   return qb;
 }
@@ -27,7 +27,7 @@ export async function createAccount(accountData: AccountInput) {
   return newAccount[0];
 }
 
-export async function updateAccount(id: AccountId, accountData: AccountUpdate) {
+export async function updateAccount(id: number, accountData: AccountUpdate) {
   const { name, email, password } = accountData;
   const updatedAccount = await baseQuery()
     .where({ id })
@@ -36,7 +36,7 @@ export async function updateAccount(id: AccountId, accountData: AccountUpdate) {
   return updatedAccount[0];
 }
 
-export async function deleteAccount(id: AccountId) {
+export async function deleteAccount(id: number) {
   const deletedAccount = await baseQuery()
     .where({ id })
     .delete()

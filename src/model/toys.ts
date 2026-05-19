@@ -30,7 +30,7 @@ export async function createToy(toyData: ToyInput) {
   return createdToy[0];
 }
 
-export async function updateToy(id: ToyId, toyData: ToyUpdate) {
+export async function updateToy(id: number, toyData: ToyUpdate) {
   const { name, age_range, price } = toyData;
 
   const updatedToy = await baseQuery()
@@ -45,7 +45,7 @@ export async function updateToy(id: ToyId, toyData: ToyUpdate) {
   return updatedToy[0];
 }
 
-export async function deleteToy(id: ToyId) {
+export async function deleteToy(id: number) {
   const deletedToy = await baseQuery()
     .where({ id })
     .delete()

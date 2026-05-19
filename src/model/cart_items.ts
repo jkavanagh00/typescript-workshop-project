@@ -6,7 +6,7 @@ function baseQuery(trx = db) {
   return trx(TABLE);
 }
 
-export async function listCartItems(id: CartId) {
+export async function listCartItems(id: number) {
   const qb = baseQuery().where({ cart_id: id }).select('*');
   return qb;
 }
@@ -17,7 +17,7 @@ export async function createCartItem(cartItemData: CartItemInput) {
   return newCartItem[0];
 }
 
-export async function updateCartItem(id: CartItemId, cartItemData: CartItemUpdate) {
+export async function updateCartItem(id: number, cartItemData: CartItemUpdate) {
   const { cart_id, toy_id, quantity } = cartItemData;
   const updatedCartItem = await baseQuery()
     .where({ id })
@@ -26,7 +26,7 @@ export async function updateCartItem(id: CartItemId, cartItemData: CartItemUpdat
   return updatedCartItem[0];
 }
 
-export async function deleteCartItem(id: CartItemId) {
+export async function deleteCartItem(id: number) {
   const deletedCartItem = await baseQuery()
     .where({ id })
     .delete()
