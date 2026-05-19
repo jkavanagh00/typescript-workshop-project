@@ -1,4 +1,4 @@
-import { listCarts, createCart, deleteCart } from "#models/carts";
+import { createCart } from "#models/carts";
 import { listCartItems, createCartItem, deleteCartItem } from "#models/cart_items";
 import { findCartByAccountId } from "#models/carts";
 import { AccountIdParam } from "#schemas/accounts";
