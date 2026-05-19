@@ -3,7 +3,7 @@ import { z } from "zod";
 export const AccountInputData = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters long"),
+  password: z.string().min(8, "Password must be at least 8 characters long"),
 });
 
 export const AccountUpdateData = AccountInputData.partial();

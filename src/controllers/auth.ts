@@ -1,15 +1,16 @@
 import { createAccount, findAccountByEmail } from '#models/accounts';
-import { RegisterInputData, LoginInputData } from '#schemas/auth';
+import { LoginInputData } from '#schemas/auth';
+import { AccountInputData } from '#schemas/accounts';
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
 export async function register(req: Request, res: Response) {
-  const registerInput = RegisterInputData.safeParse(req.body);
-  if (!registerInput.success) {
-    return res.status(400).json({ error: registerInput.error.issues });
+  const registrationInput = AccountInputData.safeParse(req.body);
+  if (!registrationInput.success) {
+    return res.status(400).json({ error: registrationInput.error.issues });
   }
   try {
-    const { name, email, password } = registerInput.data;
+    const { name, email, password } = registrationInput.data;
     const newAccount = await createAccount({ name, email, password });
     const token = jwt.sign({ id: newAccount.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     res.status(201).json({ token });
