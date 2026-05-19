@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { AccountIdParam, AccountInputData, AccountUpdateData } from './accounts';
-import { CartIdParam, CartInputData, CartUpdateData } from './carts';
-import { CartItemIdParam, CartItemInputData, CartItemUpdateData } from './cart_items';
+import { AccountInputData, AccountUpdateData } from './accounts';
+import { CartInputData, CartUpdateData } from './carts';
+import { CartItemInputData, CartItemUpdateData } from './cart_items';
 import { LoginInputData } from './auth';
-import { ToyIdParam, ToyInputData, ToyUpdateData } from './toys';
+import { ToyInputData, ToyUpdateData } from './toys';
 
 export type AccountInput = z.infer<typeof AccountInputData>;
 export type AccountUpdate = z.infer<typeof AccountUpdateData>;
