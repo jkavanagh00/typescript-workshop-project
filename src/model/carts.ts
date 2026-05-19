@@ -1,6 +1,7 @@
 import db from '#config/database';
 const TABLE = 'cart';
 import { CartId, CartInput, CartUpdate } from '#schemas/types';
+import { AccountId } from '#schemas/types';
 
 function baseQuery(trx = db) {
   return trx(TABLE);
@@ -13,6 +14,11 @@ export async function listCarts() {
 
 export async function findCartById(id: CartId) {
   const qb = baseQuery().where({ id }).first();
+  return qb;
+}
+
+export async function findCartByAccountId(id: AccountId) {
+  const qb = baseQuery().where({ account_id: id }).first();
   return qb;
 }
 
