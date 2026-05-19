@@ -1,4 +1,3 @@
-import knex from 'knex';
 import type { Knex } from 'knex';
 
 export async function up(knex: Knex) {
@@ -9,7 +8,6 @@ export async function up(knex: Knex) {
     t.timestamps(true, true);
   });
 }
-
 export async function down(knex: Knex) {
   await knex.schema.dropTableIfExists('cart');
 }
