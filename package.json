@@ -40,13 +40,10 @@
     "zod": "^4.4.3"
   },
   "imports": {
-    "#config/": "./src/config/",
-    "#configs/knex-config.js": "./src/config/knex-config.js",
+    "#config/*": "./src/config/*",
+    "#config/knex-config": "./src/config/knex-config.ts",
     "#controllers/*": "./src/controllers/*",
-    "#models/*": "./src/models/*",
-    "#routers": "./src/routers/index.js",
-    "#routers/*": "./src/routers/*",
-    "#schemas/*": "./src/schemas/*",
-    "#utils/*": "./src/utils/*"
+    "#models/*": "./src/model/*",
+    "#schemas/*": "./src/schemas/*"
   }
 }
