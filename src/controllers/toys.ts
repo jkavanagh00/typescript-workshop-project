@@ -46,7 +46,7 @@ export async function editToy(request: Request, response: Response) {
     return response.status(400).json({ error: toyUpdate.error.issues });
   }
 
-  const updatedToy = await updateToyModel(idParam.data, toyUpdate.data);
+  const updatedToy = await updateToyModel(idParam.data.id, toyUpdate.data);
 
   if (!updatedToy) {
     return response.status(404).json({ error: 'Toy not found' });
@@ -62,7 +62,7 @@ export async function removeToy(request: Request, response: Response) {
     return response.status(400).json({ error: idParam.error.issues });
   }
 
-  const deletedToy = await deleteToy(idParam.data);
+  const deletedToy = await deleteToy(idParam.data.id);
 
   if (!deletedToy) {
     return response.status(404).json({ error: 'Toy not found' });

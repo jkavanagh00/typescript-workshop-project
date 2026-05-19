@@ -2,7 +2,7 @@ import { listCarts, createCart, deleteCart } from "#models/carts";
 import { listCartItems, createCartItem, deleteCartItem } from "#models/cart_items";
 import { findCartByAccountId } from "#models/carts";
 import { AccountIdParam } from "#schemas/accounts";
-import { AccountId, CartInput, CartId } from "#schemas/types";
+import { CartInput } from "#schemas/types";
 import { Request, Response } from "express";
 
 export async function getOwnCart(req: Request, res: Response) {
@@ -11,7 +11,7 @@ export async function getOwnCart(req: Request, res: Response) {
         if (!accountId.success) {
             return res.status(400).json({ error: accountId.error.issues });
         }
-        const cart = await findCartByAccountId(accountId.data);
+        const cart = await findCartByAccountId(accountId.data.id);
         if (!cart) {
             return res.status(404).json({ error: 'Cart not found' });
         }
@@ -47,7 +47,7 @@ export async function addItemToCart(req: Request, res: Response) {
         if (!accountId.success) {
             return res.status(400).json({ error: accountId.error.issues });
         }
-        const cart = await findCartByAccountId(accountId.data);
+        const cart = await findCartByAccountId(accountId.data.id);
         if (!cart) {
             return res.status(404).json({ error: 'Cart not found' });
         }
@@ -70,12 +70,12 @@ export async function removeItemFromCart(req: Request, res: Response) {
         if (!accountId.success) {
             return res.status(400).json({ error: accountId.error.issues });
         }
-        const cart = await findCartByAccountId(accountId.data);
+        const cart = await findCartByAccountId(accountId.data.id);
         if (!cart) {
             return res.status(404).json({ error: 'Cart not found' });
         }
         const cartItemId = Number(req.params.itemId);
-        const deletedItem = await deleteCartItem({ id: cartItemId });
+        const deletedItem = await deleteCartItem(cartItemId);
         if (!deletedItem) {
             return res.status(404).json({ error: 'Cart item not found' });
         }
