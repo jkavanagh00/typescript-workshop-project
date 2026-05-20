@@ -1,0 +1,36 @@
+erDiagram
+    account {
+        int id PK
+        string name
+        string email
+        string password
+        datetime created_at
+        datetime updated_at
+    }
+    cart {
+        int id PK
+        int account_id FK
+        enum status
+        datetime created_at
+        datetime updated_at
+    }
+    toy {
+        int id PK
+        string name
+        string age_range
+        decimal price
+        datetime created_at
+        datetime updated_at
+    }
+    cart_item {
+        int id PK
+        int toy_id FK
+        int cart_id FK
+        int quantity
+        datetime created_at
+        datetime updated_at
+    }
+
+    account ||--o{ cart : "has"
+    cart ||--o{ cart_item : "contains"
+    toy ||--o{ cart_item : "included in"

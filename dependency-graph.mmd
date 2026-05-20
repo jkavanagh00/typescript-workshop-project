@@ -1,0 +1,96 @@
+flowchart LR
+
+subgraph 0["src"]
+subgraph 1["@types"]
+subgraph 2["express"]
+3["index.d.ts"]
+end
+end
+subgraph 4["config"]
+5["database.ts"]
+6["knex-config.ts"]
+end
+subgraph 7["controllers"]
+8["accounts.ts"]
+I["auth.ts"]
+J["carts.ts"]
+M["toys.ts"]
+end
+subgraph 9["model"]
+A["accounts.ts"]
+K["cart_items.ts"]
+L["carts.ts"]
+N["toys.ts"]
+end
+subgraph B["schemas"]
+C["types.ts"]
+D["accounts.ts"]
+E["auth.ts"]
+F["cart_items.ts"]
+G["carts.ts"]
+H["toys.ts"]
+end
+subgraph O["database"]
+subgraph P["migrations"]
+Q["20260519122400_cart.ts"]
+R["20260519124000_toy.ts"]
+S["20260519125400_cart_item.ts"]
+T["20260519174900_account.ts"]
+end
+subgraph U["seeds"]
+V["accounts.ts"]
+W["cart_item.ts"]
+X["carts.ts"]
+Y["toys.ts"]
+end
+end
+Z["index.ts"]
+10["openapi.ts"]
+subgraph 11["routes"]
+12["accounts.ts"]
+13["auth.ts"]
+14["carts.ts"]
+15["toys.ts"]
+end
+16["setup-zod.ts"]
+end
+5-->6
+8-->A
+8-->D
+A-->5
+A-->C
+C-->D
+C-->E
+C-->F
+C-->G
+C-->H
+I-->A
+I-->D
+I-->E
+J-->K
+J-->L
+J-->D
+J-->C
+K-->5
+K-->C
+L-->5
+L-->C
+M-->N
+M-->H
+N-->5
+N-->C
+Z-->10
+Z-->12
+Z-->13
+Z-->14
+Z-->15
+Z-->16
+10-->D
+10-->E
+10-->F
+10-->H
+12-->8
+13-->I
+14-->15
+14-->J
+15-->M

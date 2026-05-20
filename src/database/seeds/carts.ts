@@ -29,19 +29,19 @@ export async function seed(knex: Knex) {
       status: 'abandoned',
     },
     {
-      account_id: 7,
+      account_id: 2,
       status: 'active',
     },
     {
-      account_id: 8,
+      account_id: 3,
       status: 'checked_out',
     },
     {
-      account_id: 9,
+      account_id: 4,
       status: 'abandoned',
     },
     {
-      account_id: 10,
+      account_id: 5,
       status: 'active',
     },
   ]);
