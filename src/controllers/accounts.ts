@@ -1,6 +1,7 @@
 import { findAccountById, updateAccount } from '#models/accounts';
 import { AccountUpdateData } from '#schemas/accounts';
 import { Request, Response } from 'express';
+import bcrypt from 'bcrypt';
 
 function toPublicAccount(account: { id: number; name: string; email: string }) {
   return {
@@ -29,11 +30,32 @@ export async function updateAccountInfo(req: Request, res: Response) {
     if (!accountUpdateInput.success) {
       return res.status(400).json({ error: accountUpdateInput.error.issues });
     }
-    const updatedAccount = await updateAccount(req.user!.id, accountUpdateInput.data);
+    const updateData = accountUpdateInput.data;
+    const accountUpdateData: {
+        name?: string;
+        email?: string;
+        password_hash?: string;
+    } = {
+        name: updateData.name,
+        email: updateData.email,
+    };
+    if (updateData.password) {
+        accountUpdateData.password_hash = await bcrypt.hash(updateData.password, 12);
+    }
+    const updatedAccount = await updateAccount(req.user!.id, accountUpdateData);
     if (!updatedAccount) {
       return res.status(404).json({ error: 'Account not found' });
     }
-    res.status(200).json({ account: updatedAccount });
+
+    const account = await findAccountById(req.user!.id);
+
+    if (!account) {
+      return res.status(404).json({ error: 'Account not found' });
+    }
+    
+    
+    res.status(200).json({ account: toPublicAccount(account) });
+
   } catch (error) {
     console.error('Error updating account:', error);
     res.status(500).json({ error: 'Failed to update account' });
