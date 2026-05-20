@@ -30,15 +30,18 @@ export async function createAccount(accountData: AccountInput) {
 
 export async function updateAccount(id: number, accountData: AccountUpdate) {
   const { name, email, password } = accountData;
-  const updatedAccount = await baseQuery()
-    .where({ id })
-    .update({ name, email, password });
-  return updatedAccount;
+
+  const existingAccount = await findAccountById(id);
+  if (!existingAccount) {
+    return null;
+  }
+
+  await baseQuery().where({ id }).update({ name, email, password });
+
+  return findAccountById(id);
 }
 
 export async function deleteAccount(id: number) {
-  const deletedAccount = await baseQuery()
-    .where({ id })
-    .delete();
+  const deletedAccount = await baseQuery().where({ id }).delete();
   return deletedAccount;
 }

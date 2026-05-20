@@ -1,5 +1,5 @@
 import db from '#config/database';
-const TABLE = 'cart_items';
+const TABLE = 'cart_item';
 import { CartItemInput, CartItemUpdate } from '#schemas/types';
 
 function baseQuery(trx = db) {
@@ -19,16 +19,11 @@ export async function createCartItem(cartItemData: CartItemInput) {
 
 export async function updateCartItem(id: number, cartItemData: CartItemUpdate) {
   const { cart_id, toy_id, quantity } = cartItemData;
-  const updatedCartItem = await baseQuery()
-    .where({ id })
-    .update({ cart_id, toy_id, quantity })
-    ;
+  const updatedCartItem = await baseQuery().where({ id }).update({ cart_id, toy_id, quantity });
   return updatedCartItem;
 }
 
 export async function deleteCartItem(id: number) {
-  const deletedCartItem = await baseQuery()
-    .where({ id })
-    .delete();
+  const deletedCartItem = await baseQuery().where({ id }).delete();
   return deletedCartItem;
 }
