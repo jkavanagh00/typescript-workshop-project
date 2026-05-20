@@ -19,34 +19,39 @@ export async function findToyById(id: number) {
 export async function createToy(toyData: ToyInput) {
   const { name, age_range, price } = toyData;
 
-  const createdToy = await baseQuery()
-    .insert({
-      name,
-      age_range,
-      price,
-    });
+  const createdToy = await baseQuery().insert({
+    name,
+    age_range,
+    price,
+  });
 
-  return createdToy[0];
+  return findToyById(Number(createdToy[0]));
 }
 
 export async function updateToy(id: number, toyData: ToyUpdate) {
   const { name, age_range, price } = toyData;
 
-  const updatedToy = await baseQuery()
-    .where({ id })
-    .update({
-      name,
-      age_range,
-      price,
-    });
+  const existingToy = await findToyById(id);
+  if (!existingToy) {
+    return null;
+  }
 
-  return updatedToy;
+  await baseQuery().where({ id }).update({
+    name,
+    age_range,
+    price,
+  });
+
+  return findToyById(id);
 }
 
 export async function deleteToy(id: number) {
-  const deletedToy = await baseQuery()
-    .where({ id })
-    .delete();
+  const existingToy = await findToyById(id);
+  if (!existingToy) {
+    return null;
+  }
 
-  return deletedToy;
+  await baseQuery().where({ id }).delete();
+
+  return existingToy;
 }
