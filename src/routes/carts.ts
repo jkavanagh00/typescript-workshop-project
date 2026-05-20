@@ -1,6 +1,5 @@
 import express from "express";
 import { getOwnCart, addCart, addItemToCart, removeItemFromCart } from "#controllers/carts";
-import toysRouter from "./toys";
 import { authenticate } from "../middleware/authenticate";
 
 const cartsRouter = express.Router();
