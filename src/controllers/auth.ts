@@ -12,7 +12,7 @@ export async function register(req: Request, res: Response) {
   }
   try {
     const { name, email, password } = registrationInput.data;
-    const passwordHash = await bcrypt.hash(password, 12)
+    const passwordHash = await bcrypt.hash(password, 12);
     const newAccount = await createAccount({ name, email, password_hash: passwordHash });
     const token = jwt.sign({ id: newAccount.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     res.status(201).json({ token });
@@ -30,9 +30,14 @@ export async function login(req: Request, res: Response) {
   try {
     const { email, password } = loginInput.data;
     const account = await findAccountByEmail(email);
-    if (!account || account.password_hash !== password) {
+    if (!account) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
+    const isValidPassword = await bcrypt.compare(password, account.password_hash);
+    if (!isValidPassword) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
     const token = jwt.sign({ id: account.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
     res.status(200).json({ token });
   } catch (error) {
