@@ -7,32 +7,32 @@ export async function seed(knex: Knex) {
     {
       name: 'Alice Johnson',
       email: 'alice@example.com',
-      password: 'hashed_password_1',
+      password_hash: 'hashed_password_1',
     },
     {
       name: 'Bob Smith',
       email: 'bob@example.com',
-      password: 'hashed_password_2',
+      password_hash: 'hashed_password_2',
     },
     {
       name: 'Carol Williams',
       email: 'carol@example.com',
-      password: 'hashed_password_3',
+      password_hash: 'hashed_password_3',
     },
     {
       name: 'David Brown',
       email: 'david@example.com',
-      password: 'hashed_password_4',
+      password_hash: 'hashed_password_4',
     },
     {
       name: 'Eve Davis',
       email: 'eve@example.com',
-      password: 'hashed_password_5',
+      password_hash: 'hashed_password_5',
     },
     {
       name: 'Frank Miller',
       email: 'frank@example.com',
-      password: 'hashed_password_6',
+      password_hash: 'hashed_password_6',
     },
   ]);
 }
