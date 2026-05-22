@@ -1,6 +1,17 @@
 import db from '#config/database';
 const TABLE = 'account';
-import { AccountInput, AccountUpdate } from '#schemas/types';
+
+type AccountCreateData = {
+  name: string;
+  email: string;
+  password_hash: string;
+};
+
+type AccountUpdateData = {
+  name?: string;
+  email?: string;
+  password_hash?: string;
+};
 
 function baseQuery(trx = db) {
   return trx(TABLE);
@@ -21,24 +32,19 @@ export async function findAccountByEmail(email: string) {
   return qb;
 }
 
-export async function createAccount(accountData: AccountInput) {
-  const { name, email, password } = accountData;
-  const newAccount = await baseQuery().insert({ name, email, password });
+export async function createAccount(accountData: AccountCreateData) {
+  const { name, email, password_hash } = accountData;
+  const newAccount = await baseQuery().insert({ name, email, password_hash });
   const newAccountData = await findAccountById(newAccount[0]);
   return newAccountData;
 }
 
-export async function updateAccount(id: number, accountData: AccountUpdate) {
-  const { name, email, password } = accountData;
-  const updatedAccount = await baseQuery()
-    .where({ id })
-    .update({ name, email, password });
+export async function updateAccount(id: number, accountData: AccountUpdateData) {
+  const updatedAccount = await baseQuery().where({ id }).update(accountData);
   return updatedAccount;
 }
 
 export async function deleteAccount(id: number) {
-  const deletedAccount = await baseQuery()
-    .where({ id })
-    .delete();
+  const deletedAccount = await baseQuery().where({ id }).delete();
   return deletedAccount;
 }

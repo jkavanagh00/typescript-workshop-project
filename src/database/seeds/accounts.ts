@@ -7,32 +7,32 @@ export async function seed(knex: Knex) {
     {
       name: 'Alice Johnson',
       email: 'alice@example.com',
-      password: 'hashed_password_1',
+      password_hash: '$2b$12$D24dBcM2GXJPmAZ5ygaWP.7LmPuBCprUs4OlEv0Jo.Oh5ckEMVbW6',
     },
     {
       name: 'Bob Smith',
       email: 'bob@example.com',
-      password: 'hashed_password_2',
+      password_hash: '$2b$12$D24dBcM2GXJPmAZ5ygaWP.7LmPuBCprUs4OlEv0Jo.Oh5ckEMVbW6',
     },
     {
       name: 'Carol Williams',
       email: 'carol@example.com',
-      password: 'hashed_password_3',
+      password_hash: '$2b$12$D24dBcM2GXJPmAZ5ygaWP.7LmPuBCprUs4OlEv0Jo.Oh5ckEMVbW6',
     },
     {
       name: 'David Brown',
       email: 'david@example.com',
-      password: 'hashed_password_4',
+      password_hash: '$2b$12$D24dBcM2GXJPmAZ5ygaWP.7LmPuBCprUs4OlEv0Jo.Oh5ckEMVbW6',
     },
     {
       name: 'Eve Davis',
       email: 'eve@example.com',
-      password: 'hashed_password_5',
+      password_hash: '$2b$12$D24dBcM2GXJPmAZ5ygaWP.7LmPuBCprUs4OlEv0Jo.Oh5ckEMVbW6',
     },
     {
       name: 'Frank Miller',
       email: 'frank@example.com',
-      password: 'hashed_password_6',
+      password_hash: '$2b$12$D24dBcM2GXJPmAZ5ygaWP.7LmPuBCprUs4OlEv0Jo.Oh5ckEMVbW6',
     },
   ]);
 }

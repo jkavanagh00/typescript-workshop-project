@@ -5,7 +5,7 @@ export async function up(knex: Knex) {
     t.increments('id').primary;
     t.string('name').notNullable();
     t.string('email').notNullable().unique();
-    t.string('password').notNullable();
+    t.string('password_hash').notNullable();
     t.timestamps(true, true);
   });
 }
