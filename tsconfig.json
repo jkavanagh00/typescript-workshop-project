@@ -1,7 +1,20 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "target": "ES2020",
+    "module": "node16",
+    "moduleResolution": "node16",
+    "rootDir": "src",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "strict": true,
+    "paths": {
+      "#config/*": ["./src/config/*"],
+      "#controllers/*": ["./src/controllers/*"],
+      "#models/*": ["./src/model/*"],
+      "#schemas/*": ["./src/schemas/*"]
+    },
+    "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
